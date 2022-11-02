@@ -1,5 +1,5 @@
-const W = 1920/1.1;
-const H = 1080/1.1;
+const W = 1920/1.15;
+const H = 1080/1.15;
 
 const KEYS={
     W:87,

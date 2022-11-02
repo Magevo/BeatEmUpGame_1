@@ -7,7 +7,7 @@ body {
 
 #container {
     /* css that effects the container holding main. */
-    margin-top:30px;
+    margin-top:10px;
     display:flex;
     justify-content:center;
     align-items:center;
