@@ -1,4 +1,5 @@
-let IdleAnim;
+let IdleAnimLeft;
+let IdleAnimRight;
 let RunAnim;
 let Attack1Anim;
 let Attack2Anim;
@@ -19,10 +20,11 @@ class PlayerMaker {
   } //Contructor defining Starting Location of Wizard and Dimension
 
   preload() {
-    IdleAnim = loadAnimation("/Images/MainWizard/Idle_0.png", "/Images/MainWizard/Idle_1.png", 
-    "/Images/MainWizard/Idle_2.png", "/Images/MainWizard/Idle_3.png", "/Images/MainWizard/Idle_4.png", "/Images/MainWizard/Idle_5.png",);
+    IdleAnimLeft = loadAnimation("/Images/MainWizard/Idle_Left (1).png", "/Images/MainWizard/Idle_Left (2).png", 
+    "/Images/MainWizard/Idle_Left (3).png", "/Images/MainWizard/Idle_Left (4).png", "/Images/MainWizard/Idle_Left (5).png", "/Images/MainWizard/Idle_Left (6).png",);
 
-    IdleAnim = loadAnimation("")
+    IdleAnimRight = loadAnimation("/Images/MainWizard/Idle_Right (1).png", "/Images/MainWizard/Idle_Right (2).png", 
+    "/Images/MainWizard/Idle_Right (3).png", "/Images/MainWizard/Idle_Right (4).png", "/Images/MainWizard/Idle_Right (5).png", "/Images/MainWizard/Idle_Right (6).png",);
 
 
   } //Preloaded Animations for Wizard
@@ -39,10 +41,15 @@ class PlayerMaker {
   controls() { //Each Control Calls from Constants.Js and utilises a function
     if (keyIsDown(KEYS.A)) {
       this.goLeft()
-    }
+      this.sprite.changeAnimation("IdleLeft");
+      }
+     
     if (keyIsDown(KEYS.D)) {
       this.goRight()
+      this.sprite.changeAnimation("IdleRight");
     }
+
+    
   }
   goLeft() { //When A is pressed, sprite increases velocity by x to the left
     this.sprite.velocity.x -= 5
@@ -55,8 +62,9 @@ class PlayerMaker {
     let tempWizard = createSprite(x, y, w, h);
     tempWizard.friction = 0.5;
 
+    tempWizard.addAnimation("IdleRight", IdleAnimRight);
+    tempWizard.addAnimation("IdleLeft", IdleAnimLeft);
     
-    tempWizard.addAnimation("idle", IdleAnim);
     tempWizard.scale = 3
     
     return tempWizard;

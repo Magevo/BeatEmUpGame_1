@@ -18,10 +18,5 @@ function draw() {
   WizardMain.draw()
   background("black");
   drawSprites();
-
-
-  
-
-
 }
 
