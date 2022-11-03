@@ -10,6 +10,7 @@ function setup() {
 
   createCanvas(W,H);
   WizardMain.setup();
+  
 
 }
 

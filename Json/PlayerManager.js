@@ -6,7 +6,8 @@ let RunAnim;
 let Attack1AnimLeft;
 let Attack2Anim;
 
-let direction;
+let RecoveryCounter = 0;
+
 //Established Global Varaibles for Animations
 
 
@@ -37,7 +38,7 @@ class PlayerMaker {
       "/Images/MainWizard/Run_Left (5).png", "/Images/MainWizard/Run_Left (6).png", "/Images/MainWizard/Run_Left (7).png", "/Images/MainWizard/Run_Left (8).png");
 
     Attack1AnimLeft = loadAnimation("/Images/MainWizard/Attack1_Left (1).png", "/Images/MainWizard/Attack1_Left (2).png", "/Images/MainWizard/Attack1_Left (3).png", "/Images/MainWizard/Attack1_Left (4).png",
-    "/Images/MainWizard/Attack1_Left (5).png", "/Images/MainWizard/Attack1_Left (6).png", "/Images/MainWizard/Attack1_Left (7).png", "/Images/MainWizard/Attack1_Left (8).png")
+      "/Images/MainWizard/Attack1_Left (5).png", "/Images/MainWizard/Attack1_Left (6).png", "/Images/MainWizard/Attack1_Left (7).png", "/Images/MainWizard/Attack1_Left (8).png")
 
 
   } //Preloaded Animations for Wizard
@@ -48,56 +49,108 @@ class PlayerMaker {
   }
   draw() {
     this.controls();
+
+    
+
+    RecoveryCounter--
+    if (RecoveryCounter < 0) {
+      RecoveryCounter = 0
+    }
+
+  
+
+    // console.log(this.sprite.autoResetAnimations);
+    
+
+      this.controls();
+    
+
+    if (RecoveryCounter < 1 && this.sprite.getAnimationLabel() === "Attack1Left") {
+
+      if (this.sprite.getDirection() === 0 && keyIsDown(KEYS.Right) === false) {
+        this.IdleRight()
+      }
+      if (this.sprite.getDirection() === 180 && keyIsDown(KEYS.Right) === false) {
+        this.IdleLeft()
+      }
+    }
+
     //Function to continually loop Wizard Controls
 
   }
   controls() { //Each Control Calls from Constants.Js and utilises a function
-    if (keyIsDown(KEYS.Left)) {
+if(RecoveryCounter < 1){
+    if(RecoveryCounter < 1)
 
-      this.goLeft()
-    
+    if (keyIsDown(KEYS.Left)) {
+      
+      this.GoLeft()
+      this.sprite.autoResetAnimations = false
+
     } 
-    
-    if (this.sprite.getDirection() === 180 && keyIsDown(KEYS.Left) === false ) {
-        this.sprite.changeAnimation("IdleLeft");
-      }
-    
 
     if (keyIsDown(KEYS.Right)) {
-      this.goRight()
-    }    
-    
-    if (this.sprite.getDirection() === 0 && keyIsDown(KEYS.Right) === false) {
-      this.sprite.changeAnimation("IdleRight");
+
+      this.GoRight()
+      this.sprite.autoResetAnimations = false
+      
+    } else {
+      
     }
 
-    if(keyIsDown(KEYS.Z)){
 
-      if(this.sprite.getDirection() === 180){
-      this.Attack1Left()
+   
+    if (this.sprite.getAnimationLabel() === "RunRight" && keyIsDown(KEYS.Right) === false) {
+      this.IdleRight();
+      console.log("Finished Run right")
+
+    }
+    if (this.sprite.getAnimationLabel() === "RunLeft" && keyIsDown(KEYS.Left) === false) {
+      this.IdleLeft();
+      console.log("Finished run left")
+
+    }
+
+
+    if (keyIsDown(KEYS.Z)) {
+      this.sprite.autoResetAnimations = true
+      if (RecoveryCounter < 1) {
+        if (this.sprite.getDirection() === 180) {
+          this.Attack1Left()
+          RecoveryCounter = 32;
+        }
       }
-    } 
 
-    
+    }
+
 
   }
-  goLeft() { //When A is pressed, sprite increases velocity by x to the left
+  }
+  GoLeft() { //When A is pressed, sprite increases velocity by x to the left
     this.sprite.velocity.x -= 3
     this.sprite.changeAnimation("RunLeft");
 
+
   }
-  goRight() { //When D is pressed, sprite increases velocity by x to the right
+  GoRight() { //When D is pressed, sprite increases velocity by x to the right
     this.sprite.velocity.x += 3
     this.sprite.changeAnimation("RunRight");
+
   }
   Attack1Left() {
-    this.sprite.setSpeed(0,this.sprite.getDirection())
+    this.sprite.setSpeed(0, this.sprite.getDirection())
     this.sprite.changeAnimation("Attack1Left");
   }
-  // Attack2Anim() {
-  //   this.sprite.setSpeed(0,this.sprite.getDirection())
-  //   this.sprite.changeAnimation("Attack2")
-  // }
+  Attack2Right() {
+    this.sprite.setSpeed(0, this.sprite.getDirection())
+    this.sprite.changeAnimation("Attack2")
+  }
+  IdleLeft() {
+    this.sprite.changeAnimation("IdleLeft");
+  }
+  IdleRight() {
+    this.sprite.changeAnimation("IdleRight");
+  }
   GetHit() {
 
   }
@@ -115,7 +168,7 @@ class PlayerMaker {
     tempWizard.addAnimation("RunLeft", RunningAnimLeft);
     tempWizard.addAnimation("Attack1Left", Attack1AnimLeft);
 
-    // tempWizard.autoResetAnimations = false
+    tempWizard.autoResetAnimations = true
 
 
     tempWizard.scale = 3
