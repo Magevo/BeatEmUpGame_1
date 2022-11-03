@@ -4,7 +4,7 @@ let RunningAnimRight;
 let RunningAnimLeft;
 let RunAnim;
 let Attack1AnimLeft;
-let Attack2Anim;
+let Attack1AnimRight;
 
 let RecoveryCounter = 0;
 
@@ -22,7 +22,8 @@ class PlayerMaker {
     this.w = 190
     this.h = 231
 
-  } //Contructor defining Starting Location of Wizard and Dimension
+    //Contructor defining Starting Location of Wizard and Dimensions  
+  }
 
   preload() {
     IdleAnimLeft = loadAnimation("/Images/MainWizard/Idle_Left (1).png", "/Images/MainWizard/Idle_Left (2).png",
@@ -40,8 +41,11 @@ class PlayerMaker {
     Attack1AnimLeft = loadAnimation("/Images/MainWizard/Attack1_Left (1).png", "/Images/MainWizard/Attack1_Left (2).png", "/Images/MainWizard/Attack1_Left (3).png", "/Images/MainWizard/Attack1_Left (4).png",
       "/Images/MainWizard/Attack1_Left (5).png", "/Images/MainWizard/Attack1_Left (6).png", "/Images/MainWizard/Attack1_Left (7).png", "/Images/MainWizard/Attack1_Left (8).png")
 
+    Attack1AnimRight = loadAnimation("/Images/MainWizard/Attack1_Right (1).png", "/Images/MainWizard/Attack1_Right (2).png", "/Images/MainWizard/Attack1_Right (3).png", "/Images/MainWizard/Attack1_Right (4).png",
+      "/Images/MainWizard/Attack1_Right (5).png", "/Images/MainWizard/Attack1_Right (6).png", "/Images/MainWizard/Attack1_Right (7).png", "/Images/MainWizard/Attack1_Right (8).png")
 
-  } //Preloaded Animations for Wizard
+    //Preloaded Animations for Wizard
+  }
 
   setup() {
     this.sprite = this.makeWizard(this.start.x, this.start.y, this.w, this.h);
@@ -49,82 +53,41 @@ class PlayerMaker {
   }
   draw() {
     this.controls();
+    this.RecoveryCounter();
+    this.IdleState();
 
-    
-
-    RecoveryCounter--
-    if (RecoveryCounter < 0) {
-      RecoveryCounter = 0
-    }
-
-  
-
-    // console.log(this.sprite.autoResetAnimations);
-    
-
-      this.controls();
-    
-
-    if (RecoveryCounter < 1 && this.sprite.getAnimationLabel() === "Attack1Left") {
-
-      if (this.sprite.getDirection() === 0 && keyIsDown(KEYS.Right) === false) {
-        this.IdleRight()
-      }
-      if (this.sprite.getDirection() === 180 && keyIsDown(KEYS.Right) === false) {
-        this.IdleLeft()
-      }
-    }
 
     //Function to continually loop Wizard Controls
 
   }
   controls() { //Each Control Calls from Constants.Js and utilises a function
-if(RecoveryCounter < 1){
-    if(RecoveryCounter < 1)
+    if (RecoveryCounter < 1) {
 
-    if (keyIsDown(KEYS.Left)) {
-      
-      this.GoLeft()
-      this.sprite.autoResetAnimations = false
-
-    } 
-
-    if (keyIsDown(KEYS.Right)) {
-
-      this.GoRight()
-      this.sprite.autoResetAnimations = false
-      
-    } else {
-      
-    }
-
-
-   
-    if (this.sprite.getAnimationLabel() === "RunRight" && keyIsDown(KEYS.Right) === false) {
-      this.IdleRight();
-      console.log("Finished Run right")
-
-    }
-    if (this.sprite.getAnimationLabel() === "RunLeft" && keyIsDown(KEYS.Left) === false) {
-      this.IdleLeft();
-      console.log("Finished run left")
-
-    }
-
-
-    if (keyIsDown(KEYS.Z)) {
-      this.sprite.autoResetAnimations = true
-      if (RecoveryCounter < 1) {
-        if (this.sprite.getDirection() === 180) {
-          this.Attack1Left()
-          RecoveryCounter = 32;
-        }
+      if (keyIsDown(KEYS.Left)) {
+        this.GoLeft()
+        this.sprite.autoResetAnimations = false
       }
 
+      if (keyIsDown(KEYS.Right)) {
+        this.GoRight()
+        this.sprite.autoResetAnimations = false
+      }
+
+      if (keyIsDown(KEYS.Z)) {
+        
+        if (RecoveryCounter < 1) {
+          
+          
+            this.sprite.autoResetAnimations = true
+            this.Attack1()
+            RecoveryCounter = 31;
+          
+          
+        }
+
+      }
     }
-
-
-  }
+    console.log(this.sprite.getAnimationLabel())
   }
   GoLeft() { //When A is pressed, sprite increases velocity by x to the left
     this.sprite.velocity.x -= 3
@@ -137,14 +100,22 @@ if(RecoveryCounter < 1){
     this.sprite.changeAnimation("RunRight");
 
   }
-  Attack1Left() {
+  Attack1() {
+
+    if (this.sprite.getDirection() === 180) {
     this.sprite.setSpeed(0, this.sprite.getDirection())
     this.sprite.changeAnimation("Attack1Left");
+    }
+
+    if (this.sprite.getDirection() === 0) {
+      this.sprite.setSpeed(0, this.sprite.getDirection())
+      this.sprite.changeAnimation("Attack1Right");
+      }
+
+
+
   }
-  Attack2Right() {
-    this.sprite.setSpeed(0, this.sprite.getDirection())
-    this.sprite.changeAnimation("Attack2")
-  }
+
   IdleLeft() {
     this.sprite.changeAnimation("IdleLeft");
   }
@@ -167,6 +138,8 @@ if(RecoveryCounter < 1){
     tempWizard.addAnimation("RunRight", RunningAnimRight);
     tempWizard.addAnimation("RunLeft", RunningAnimLeft);
     tempWizard.addAnimation("Attack1Left", Attack1AnimLeft);
+    tempWizard.addAnimation("Attack1Right", Attack1AnimRight);
+    
 
     tempWizard.autoResetAnimations = true
 
@@ -176,14 +149,35 @@ if(RecoveryCounter < 1){
     return tempWizard;
   } //Wizard Sprite Creation
 
+  RecoveryCounter() {
+
+    RecoveryCounter--
+    if (RecoveryCounter < 0) {
+      RecoveryCounter = 0
+    }
+
+  }
+
+  IdleState() {
+    if (RecoveryCounter < 1 && this.sprite.getAnimationLabel() === "Attack1Left" || RecoveryCounter < 1 && this.sprite.getAnimationLabel() === "Attack1Right"  ) {
+
+      if (this.sprite.getDirection() === 0 && keyIsDown(KEYS.Right) === false) {
+        this.IdleRight()
+      }
+      if (this.sprite.getDirection() === 180 && keyIsDown(KEYS.Right) === false) {
+        this.IdleLeft()
+      }
 
 
+    }
+    if (this.sprite.getAnimationLabel() === "RunRight" && keyIsDown(KEYS.Right) === false) {
+      this.IdleRight();
+    }
 
+    if (this.sprite.getAnimationLabel() === "RunLeft" && keyIsDown(KEYS.Left) === false) {
+      this.IdleLeft();
+    }
 
-
-
-  // animation(WizardAnimationRun,100,50);
-  // animation(WizardAnimationAttack1,100,300);
-  // animation(WizardAnimationAttack2,100,550);
+  }
 
 }
