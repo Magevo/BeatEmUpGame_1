@@ -5,6 +5,7 @@ let RunningAnimLeft;
 let RunAnim;
 let Attack1AnimLeft;
 let Attack1AnimRight;
+let movementSpeed;
 
 let RecoveryCounter = 0;
 
@@ -17,7 +18,7 @@ class PlayerMaker {
     this.sprite
     this.start = {
       x: W / 2,
-      y: H - 500
+      y: H - 220
     }
     this.w = 190
     this.h = 231
@@ -50,6 +51,9 @@ class PlayerMaker {
   setup() {
     this.sprite = this.makeWizard(this.start.x, this.start.y, this.w, this.h);
     //Initialisation of Wizard Sprite with beginning Location
+
+    movementSpeed = 5
+
   }
   draw() {
     this.controls();
@@ -87,16 +91,16 @@ class PlayerMaker {
 
       }
     }
-    console.log(this.sprite.getAnimationLabel())
+    
   }
   GoLeft() { //When A is pressed, sprite increases velocity by x to the left
-    this.sprite.velocity.x -= 3
+    this.sprite.velocity.x -= movementSpeed
     this.sprite.changeAnimation("RunLeft");
 
 
   }
   GoRight() { //When D is pressed, sprite increases velocity by x to the right
-    this.sprite.velocity.x += 3
+    this.sprite.velocity.x += movementSpeed
     this.sprite.changeAnimation("RunRight");
 
   }
