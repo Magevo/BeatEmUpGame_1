@@ -1,4 +1,4 @@
-let Floor,Floor2,Grass,Trees,Floral,Fill,Bush,Wave;
+let Floor,Floor2,Grass,Trees,Floral,Fill,Bush,Wave,BackgroundTest;
 
 let XFloor1,XFloor2,YFloor;
 let ScrollSpeedFloor;
@@ -29,15 +29,9 @@ let FillSpeed = 2;
 let BushSpeed = 2;
 let WaveSpeed = 2;
 
-let FloorBig,GrassBig,TreesBig;
-
-
 
 class MapMaker {
 
-constructor(){
-
-}
 
 preload(){
 
@@ -49,14 +43,11 @@ preload(){
     Fill = loadImage("Images/Maps/Purple/Fill.png");
     Bush = loadImage("Images/Maps/Purple/Bush.png");
     Wave = loadImage("Images/Maps/Purple/Wave.png");
-
-    // Floor = FloorBig.resize(W,H);
-    // Grass = GrassBig.resize(W,H);
-    // Trees = TreesBig.resize(W,H);
-
+    BackgroundTest = loadImage("Images/Maps/Purple/background.png");
 }
 
 setup(){
+
     YFloor = 0
     XFloor1 = 0
     XFloor2 = W
@@ -92,6 +83,7 @@ setup(){
     XWave2 = W
     ScrollSpeedWave = WaveSpeed;
 
+
 }
 
 draw(){
@@ -104,7 +96,7 @@ this.drawFloral();
 this.drawTrees();
 this.drawGrass();
 this.drawFloor();
-
+// image(BackgroundTest,0,0);
 
 
 }

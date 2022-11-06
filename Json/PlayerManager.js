@@ -5,6 +5,8 @@ let RunningAnimLeft;
 let RunAnim;
 let Attack1AnimLeft;
 let Attack1AnimRight;
+let Attack2AnimLeft;
+let Attack2AnimRight;
 let movementSpeed;
 
 let RecoveryCounter = 0;
@@ -40,10 +42,17 @@ class PlayerMaker {
       "/Images/MainWizard/Run_Left (5).png", "/Images/MainWizard/Run_Left (6).png", "/Images/MainWizard/Run_Left (7).png", "/Images/MainWizard/Run_Left (8).png");
 
     Attack1AnimLeft = loadAnimation("/Images/MainWizard/Attack1_Left (1).png", "/Images/MainWizard/Attack1_Left (2).png", "/Images/MainWizard/Attack1_Left (3).png", "/Images/MainWizard/Attack1_Left (4).png",
-      "/Images/MainWizard/Attack1_Left (5).png", "/Images/MainWizard/Attack1_Left (6).png", "/Images/MainWizard/Attack1_Left (7).png", "/Images/MainWizard/Attack1_Left (8).png")
+      "/Images/MainWizard/Attack1_Left (5).png", "/Images/MainWizard/Attack1_Left (6).png", "/Images/MainWizard/Attack1_Left (7).png", "/Images/MainWizard/Attack1_Left (8).png");
 
     Attack1AnimRight = loadAnimation("/Images/MainWizard/Attack1_Right (1).png", "/Images/MainWizard/Attack1_Right (2).png", "/Images/MainWizard/Attack1_Right (3).png", "/Images/MainWizard/Attack1_Right (4).png",
-      "/Images/MainWizard/Attack1_Right (5).png", "/Images/MainWizard/Attack1_Right (6).png", "/Images/MainWizard/Attack1_Right (7).png", "/Images/MainWizard/Attack1_Right (8).png")
+      "/Images/MainWizard/Attack1_Right (5).png", "/Images/MainWizard/Attack1_Right (6).png", "/Images/MainWizard/Attack1_Right (7).png", "/Images/MainWizard/Attack1_Right (8).png");
+
+    Attack2AnimLeft = loadAnimation("/Images/MainWizard/Attack2_Left (1).png", "/Images/MainWizard/Attack2_Left (2).png", "/Images/MainWizard/Attack2_Left (3).png", "/Images/MainWizard/Attack2_Left (4).png",
+      "/Images/MainWizard/Attack2_Left (5).png", "/Images/MainWizard/Attack2_Left (6).png", "/Images/MainWizard/Attack2_Left (7).png", "/Images/MainWizard/Attack2_Left (8).png");
+
+    Attack2AnimRight = loadAnimation("/Images/MainWizard/Attack2_Right (1).png", "/Images/MainWizard/Attack2_Right (2).png", "/Images/MainWizard/Attack2_Right (3).png", "/Images/MainWizard/Attack2_Right (4).png",
+      "/Images/MainWizard/Attack2_Right (5).png", "/Images/MainWizard/Attack2_Right (6).png", "/Images/MainWizard/Attack2_Right (7).png", "/Images/MainWizard/Attack2_Right (8).png");
+
 
     //Preloaded Animations for Wizard
   }
@@ -52,7 +61,8 @@ class PlayerMaker {
     this.sprite = this.makeWizard(this.start.x, this.start.y, this.w, this.h);
     //Initialisation of Wizard Sprite with beginning Location
 
-    movementSpeed = 5
+    movementSpeed = 8
+    //Speed Toggle
 
   }
   draw() {
@@ -78,20 +88,28 @@ class PlayerMaker {
       }
 
       if (keyIsDown(KEYS.Z)) {
-        
-        if (RecoveryCounter < 1) {
-          
-          
-            this.sprite.autoResetAnimations = true
-            this.Attack1()
-            RecoveryCounter = 31;
-          
-          
-        }
 
+        if (RecoveryCounter < 1) {
+
+
+          this.sprite.autoResetAnimations = true
+          this.Attack1()
+          RecoveryCounter = 31;
+        }
+      }
+
+      if (keyIsDown(KEYS.X)) {
+
+        if (RecoveryCounter < 1) {
+
+          this.sprite.autoResetAnimations = true
+          this.Attack2()
+          RecoveryCounter = 31;
+
+        }
       }
     }
-    
+
   }
   GoLeft() { //When A is pressed, sprite increases velocity by x to the left
     this.sprite.velocity.x -= movementSpeed
@@ -99,36 +117,54 @@ class PlayerMaker {
 
 
   }
+
   GoRight() { //When D is pressed, sprite increases velocity by x to the right
     this.sprite.velocity.x += movementSpeed
     this.sprite.changeAnimation("RunRight");
 
   }
+
   Attack1() {
 
     if (this.sprite.getDirection() === 180) {
-    this.sprite.setSpeed(0, this.sprite.getDirection())
-    this.sprite.changeAnimation("Attack1Left");
+      this.sprite.setSpeed(0, this.sprite.getDirection())
+      this.sprite.changeAnimation("Attack1Left");
     }
 
     if (this.sprite.getDirection() === 0) {
       this.sprite.setSpeed(0, this.sprite.getDirection())
       this.sprite.changeAnimation("Attack1Right");
-      }
+    }
 
 
 
   }
+
+  Attack2() {
+    if (this.sprite.getDirection() === 180) {
+      this.sprite.setSpeed(0, this.sprite.getDirection())
+      this.sprite.changeAnimation("Attack2Left");
+    }
+
+    if (this.sprite.getDirection() === 0) {
+      this.sprite.setSpeed(0, this.sprite.getDirection())
+      this.sprite.changeAnimation("Attack2Right");
+    }
+  }
+
 
   IdleLeft() {
     this.sprite.changeAnimation("IdleLeft");
   }
+
   IdleRight() {
     this.sprite.changeAnimation("IdleRight");
   }
+
   GetHit() {
 
   }
+
   Die() {
 
   }
@@ -143,7 +179,9 @@ class PlayerMaker {
     tempWizard.addAnimation("RunLeft", RunningAnimLeft);
     tempWizard.addAnimation("Attack1Left", Attack1AnimLeft);
     tempWizard.addAnimation("Attack1Right", Attack1AnimRight);
-    
+    tempWizard.addAnimation("Attack2Left", Attack2AnimLeft);
+    tempWizard.addAnimation("Attack2Right",Attack2AnimRight);
+
 
     tempWizard.autoResetAnimations = true
 
@@ -151,7 +189,9 @@ class PlayerMaker {
     tempWizard.scale = 3
 
     return tempWizard;
-  } //Wizard Sprite Creation
+    //Wizard Sprite Creation
+
+  } 
 
   RecoveryCounter() {
 
@@ -163,7 +203,8 @@ class PlayerMaker {
   }
 
   IdleState() {
-    if (RecoveryCounter < 1 && this.sprite.getAnimationLabel() === "Attack1Left" || RecoveryCounter < 1 && this.sprite.getAnimationLabel() === "Attack1Right"  ) {
+    if (RecoveryCounter < 1 && this.sprite.getAnimationLabel() === "Attack1Left" || RecoveryCounter < 1 && this.sprite.getAnimationLabel() === "Attack1Right"
+    || RecoveryCounter < 1 && this.sprite.getAnimationLabel() === "Attack2Left" || RecoveryCounter < 1 && this.sprite.getAnimationLabel() === "Attack2Right") {
 
       if (this.sprite.getDirection() === 0 && keyIsDown(KEYS.Right) === false) {
         this.IdleRight()

@@ -15,6 +15,7 @@ function setup() {
   WizardMain.setup();
   MapCreator.setup();
   
+  
 
 }
 

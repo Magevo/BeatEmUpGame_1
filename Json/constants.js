@@ -13,3 +13,5 @@ const KEYS={
     Z:90,
     X:88
 }
+
+//Resize notes W = 1670 H = 940   
