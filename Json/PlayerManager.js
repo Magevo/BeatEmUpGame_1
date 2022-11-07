@@ -7,6 +7,7 @@ let Attack1AnimLeft;
 let Attack1AnimRight;
 let Attack2AnimLeft;
 let Attack2AnimRight;
+let DeathAnimRight;
 let movementSpeed;
 
 let RecoveryCounter = 0;
@@ -53,6 +54,8 @@ class PlayerMaker {
     Attack2AnimRight = loadAnimation("/Images/MainWizard/Attack2_Right (1).png", "/Images/MainWizard/Attack2_Right (2).png", "/Images/MainWizard/Attack2_Right (3).png", "/Images/MainWizard/Attack2_Right (4).png",
       "/Images/MainWizard/Attack2_Right (5).png", "/Images/MainWizard/Attack2_Right (6).png", "/Images/MainWizard/Attack2_Right (7).png", "/Images/MainWizard/Attack2_Right (8).png");
 
+    DeathAnimRight = loadAnimation("/Images/MainWizard/Death_Right (1).png", "/Images/MainWizard/Death_Right (2).png", "/Images/MainWizard/Death_Right (3).png", "/Images/MainWizard/Death_Right (4).png",
+      "/Images/MainWizard/Death_Right (5).png", "/Images/MainWizard/Death_Right (6).png", "/Images/MainWizard/Death_Right (7).png")
 
     //Preloaded Animations for Wizard
   }
@@ -87,7 +90,7 @@ class PlayerMaker {
         this.sprite.autoResetAnimations = false
       }
 
-      if (keyIsDown(KEYS.Z)) {
+      if (keyIsDown(KEYS.X)) {
 
         if (RecoveryCounter < 1) {
 
@@ -98,7 +101,7 @@ class PlayerMaker {
         }
       }
 
-      if (keyIsDown(KEYS.X)) {
+      if (keyIsDown(KEYS.Z)) {
 
         if (RecoveryCounter < 1) {
 
@@ -109,6 +112,14 @@ class PlayerMaker {
         }
       }
     }
+
+      if(keyIsDown(KEYS.W)){
+
+        this.sprite.autoResetAnimations = true
+        this.Death();
+        RecoveryCounter = 28;
+
+      }
 
   }
   GoLeft() { //When A is pressed, sprite increases velocity by x to the left
@@ -165,8 +176,8 @@ class PlayerMaker {
 
   }
 
-  Die() {
-
+  Death() {
+    this.sprite.changeAnimation("DeathRight");
   }
 
   makeWizard(x, y, w, h) {
@@ -181,6 +192,7 @@ class PlayerMaker {
     tempWizard.addAnimation("Attack1Right", Attack1AnimRight);
     tempWizard.addAnimation("Attack2Left", Attack2AnimLeft);
     tempWizard.addAnimation("Attack2Right",Attack2AnimRight);
+    tempWizard.addAnimation("DeathRight", DeathAnimRight);
 
 
     tempWizard.autoResetAnimations = true
@@ -204,7 +216,8 @@ class PlayerMaker {
 
   IdleState() {
     if (RecoveryCounter < 1 && this.sprite.getAnimationLabel() === "Attack1Left" || RecoveryCounter < 1 && this.sprite.getAnimationLabel() === "Attack1Right"
-    || RecoveryCounter < 1 && this.sprite.getAnimationLabel() === "Attack2Left" || RecoveryCounter < 1 && this.sprite.getAnimationLabel() === "Attack2Right") {
+    || RecoveryCounter < 1 && this.sprite.getAnimationLabel() === "Attack2Left" || RecoveryCounter < 1 && this.sprite.getAnimationLabel() === "Attack2Right"
+    || RecoveryCounter < 1 && this.sprite.getAnimationLabel()=== "DeathRight") {
 
       if (this.sprite.getDirection() === 0 && keyIsDown(KEYS.Right) === false) {
         this.IdleRight()
