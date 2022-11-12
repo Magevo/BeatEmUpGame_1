@@ -35,15 +35,15 @@ class MapMaker {
 
 preload(){
 
-    Floor = loadImage("/Images/Maps/Purple/Floor.png");
-    Grass = loadImage("/Images/Maps/Purple/Grass.png");
-    Trees = loadImage("Images/Maps/Purple/Trees.png");
-    Floor2 = loadImage("/Images/Maps/Blue/Floor.png");
-    Floral = loadImage("Images/Maps/Purple/Floral.png");
-    Fill = loadImage("Images/Maps/Purple/Fill.png");
-    Bush = loadImage("Images/Maps/Purple/Bush.png");
-    Wave = loadImage("Images/Maps/Purple/Wave.png");
-    BackgroundTest = loadImage("Images/Maps/Purple/background.png");
+    Floor = loadImage("./Images/Maps/Purple/Floor.png");
+    Grass = loadImage("./Images/Maps/Purple/Grass.png");
+    Trees = loadImage("./Images/Maps/Purple/Trees.png");
+    Floor2 = loadImage("./Images/Maps/Blue/Floor.png");
+    Floral = loadImage("./Images/Maps/Purple/Floral.png");
+    Fill = loadImage("./Images/Maps/Purple/Fill.png");
+    Bush = loadImage("./Images/Maps/Purple/Bush.png");
+    Wave = loadImage("./Images/Maps/Purple/Wave.png");
+    BackgroundTest = loadImage("./Images/Maps/Purple/background.png");
 }
 
 setup(){

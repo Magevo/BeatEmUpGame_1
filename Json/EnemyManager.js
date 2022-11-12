@@ -25,32 +25,32 @@ class EnemyMaker {
 
 
     preload() {
-        IdleAnimLeftGob = loadAnimation("/Images/EnemyGoblin/Idle_Left (1).png", "/Images/EnemyGoblin/Idle_Left (2).png",
-          "/Images/EnemyGoblin/Idle_Left (3).png", "/Images/EnemyGoblin/Idle_Left (4).png")
+        IdleAnimLeftGob = loadAnimation("./Images/EnemyGoblin/Idle_Left (1).png", "./Images/EnemyGoblin/Idle_Left (2).png",
+          "./Images/EnemyGoblin/Idle_Left (3).png", "./Images/EnemyGoblin/Idle_Left (4).png")
 
-        IdleAnimRightGob = loadAnimation("/Images/EnemyGoblin/Idle_Right (1).png", "/Images/EnemyGoblin/Idle_Right (2).png",
-            "/Images/EnemyGoblin/Idle_Right (3).png", "/Images/EnemyGoblin/Idle_Right (4).png");
+        IdleAnimRightGob = loadAnimation("./Images/EnemyGoblin/Idle_Right (1).png", "./Images/EnemyGoblin/Idle_Right (2).png",
+            "./Images/EnemyGoblin/Idle_Right (3).png", "./Images/EnemyGoblin/Idle_Right (4).png");
 
-        RunningAnimRightGob = loadAnimation("/Images/EnemyGoblin/Run_Right (1).png", "/Images/EnemyGoblin/Run_Right (2).png", "/Images/EnemyGoblin/Run_Right (3).png", "/Images/EnemyGoblin/Run_Right (4).png",
-            "/Images/EnemyGoblin/Run_Right (5).png", "/Images/EnemyGoblin/Run_Right (6).png", "/Images/EnemyGoblin/Run_Right (7).png", "/Images/EnemyGoblin/Run_Right (8).png");
+        RunningAnimRightGob = loadAnimation("./Images/EnemyGoblin/Run_Right (1).png", "./Images/EnemyGoblin/Run_Right (2).png", "./Images/EnemyGoblin/Run_Right (3).png", "./Images/EnemyGoblin/Run_Right (4).png",
+            "./Images/EnemyGoblin/Run_Right (5).png", "./Images/EnemyGoblin/Run_Right (6).png", "./Images/EnemyGoblin/Run_Right (7).png", "./Images/EnemyGoblin/Run_Right (8).png");
 
-        RunningAnimLeftGob = loadAnimation("/Images/EnemyGoblin/Run_Left (1).png", "/Images/EnemyGoblin/Run_Left (2).png", "/Images/EnemyGoblin/Run_Left (3).png", "/Images/EnemyGoblin/Run_Left (5).png",
-          "/Images/EnemyGoblin/Run_Left (5).png", "/Images/EnemyGoblin/Run_Left (6).png", "/Images/EnemyGoblin/Run_Left (7).png", "/Images/EnemyGoblin/Run_Left (8).png");
+        RunningAnimLeftGob = loadAnimation("./Images/EnemyGoblin/Run_Left (1).png", "./Images/EnemyGoblin/Run_Left (2).png", "./Images/EnemyGoblin/Run_Left (3).png", "./Images/EnemyGoblin/Run_Left (5).png",
+          "./Images/EnemyGoblin/Run_Left (5).png", "./Images/EnemyGoblin/Run_Left (6).png", "./Images/EnemyGoblin/Run_Left (7).png", "./Images/EnemyGoblin/Run_Left (8).png");
 
-        Attack1AnimLeftGob = loadAnimation("/Images/EnemyGoblin/Attack1_Left (1).png", "/Images/EnemyGoblin/Attack1_Left (2).png", "/Images/EnemyGoblin/Attack1_Left (3).png", "/Images/EnemyGoblin/Attack1_Left (4).png",
-          "/Images/EnemyGoblin/Attack1_Left (5).png", "/Images/EnemyGoblin/Attack1_Left (6).png", "/Images/EnemyGoblin/Attack1_Left (7).png", "/Images/EnemyGoblin/Attack1_Left (8).png");
+        Attack1AnimLeftGob = loadAnimation("./Images/EnemyGoblin/Attack1_Left (1).png", "./Images/EnemyGoblin/Attack1_Left (2).png", "./Images/EnemyGoblin/Attack1_Left (3).png", "/Images/EnemyGoblin/Attack1_Left (4).png",
+          "./Images/EnemyGoblin/Attack1_Left (5).png", "./Images/EnemyGoblin/Attack1_Left (6).png", "./Images/EnemyGoblin/Attack1_Left (7).png", "./Images/EnemyGoblin/Attack1_Left (8).png");
 
-        Attack1AnimRightGob = loadAnimation("/Images/EnemyGoblin/Attack1_Right (1).png", "/Images/EnemyGoblin/Attack1_Right (2).png", "/Images/EnemyGoblin/Attack1_Right (3).png", "/Images/EnemyGoblin/Attack1_Right (4).png",
-            "/Images/EnemyGoblin/Attack1_Right (5).png", "/Images/EnemyGoblin/Attack1_Right (6).png", "/Images/EnemyGoblin/Attack1_Right (7).png", "/Images/EnemyGoblin/Attack1_Right (8).png");
+        Attack1AnimRightGob = loadAnimation("./Images/EnemyGoblin/Attack1_Right (1).png", "./Images/EnemyGoblin/Attack1_Right (2).png", "./Images/EnemyGoblin/Attack1_Right (3).png", "./Images/EnemyGoblin/Attack1_Right (4).png",
+            "./Images/EnemyGoblin/Attack1_Right (5).png", "./Images/EnemyGoblin/Attack1_Right (6).png", "./Images/EnemyGoblin/Attack1_Right (7).png", "./Images/EnemyGoblin/Attack1_Right (8).png");
 
-        TakeHitAnimRightGob = loadAnimation("/Images/EnemyGoblin/TakeHit_Right (1).png", "/Images/EnemyGoblin/TakeHit_Right (2).png", "/Images/EnemyGoblin/TakeHit_Right (3).png", "/Images/EnemyGoblin/TakeHit_Right (4).png")
+        TakeHitAnimRightGob = loadAnimation("./Images/EnemyGoblin/TakeHit_Right (1).png", "./Images/EnemyGoblin/TakeHit_Right (2).png", "./Images/EnemyGoblin/TakeHit_Right (3).png", "./Images/EnemyGoblin/TakeHit_Right (4).png")
 
         // Attack2AnimRight = loadAnimation("/Images/EnemyGoblin/Attack2_Right (1).png", "/Images/EnemyGoblin/Attack2_Right (2).png", "/Images/EnemyGoblin/Attack2_Right (3).png", "/Images/EnemyGoblin/Attack2_Right (4).png",
         //   "/Images/EnemyGoblin/Attack2_Right (5).png", "/Images/EnemyGoblin/Attack2_Right (6).png", "/Images/EnemyGoblin/Attack2_Right (7).png", "/Images/EnemyGoblin/Attack2_Right (8).png");
 
-        DeathAnimRightGob = loadAnimation("/Images/EnemyGoblin/Death_Right (1).png", "/Images/EnemyGoblin/Death_Right (2).png", "/Images/EnemyGoblin/Death_Right (3).png", "/Images/EnemyGoblin/Death_Right (4).png");
+        DeathAnimRightGob = loadAnimation("./Images/EnemyGoblin/Death_Right (1).png", "./Images/EnemyGoblin/Death_Right (2).png", "./Images/EnemyGoblin/Death_Right (3).png", "./Images/EnemyGoblin/Death_Right (4).png");
 
-        DeathAnimLeftGob = loadAnimation("/Images/EnemyGoblin/Death_Left (1).png", "/Images/EnemyGoblin/Death_Left (2).png", "/Images/EnemyGoblin/Death_Left (3).png", "/Images/EnemyGoblin/Death_Left (4).png");
+        DeathAnimLeftGob = loadAnimation("./Images/EnemyGoblin/Death_Left (1).png", "./Images/EnemyGoblin/Death_Left (2).png", "./Images/EnemyGoblin/Death_Left (3).png", "./Images/EnemyGoblin/Death_Left (4).png");
         //Preloaded Animations for Goblin
     }
 
