@@ -26,7 +26,7 @@ class EnemyMaker {
 
     preload() {
         IdleAnimLeftGob = loadAnimation("./Images/EnemyGoblin/Idle_Left (1).png", "./Images/EnemyGoblin/Idle_Left (2).png",
-          "./Images/EnemyGoblin/Idle_Left (3).png", "./Images/EnemyGoblin/Idle_Left (4).png")
+            "./Images/EnemyGoblin/Idle_Left (3).png", "./Images/EnemyGoblin/Idle_Left (4).png")
 
         IdleAnimRightGob = loadAnimation("./Images/EnemyGoblin/Idle_Right (1).png", "./Images/EnemyGoblin/Idle_Right (2).png",
             "./Images/EnemyGoblin/Idle_Right (3).png", "./Images/EnemyGoblin/Idle_Right (4).png");
@@ -35,10 +35,10 @@ class EnemyMaker {
             "./Images/EnemyGoblin/Run_Right (5).png", "./Images/EnemyGoblin/Run_Right (6).png", "./Images/EnemyGoblin/Run_Right (7).png", "./Images/EnemyGoblin/Run_Right (8).png");
 
         RunningAnimLeftGob = loadAnimation("./Images/EnemyGoblin/Run_Left (1).png", "./Images/EnemyGoblin/Run_Left (2).png", "./Images/EnemyGoblin/Run_Left (3).png", "./Images/EnemyGoblin/Run_Left (5).png",
-          "./Images/EnemyGoblin/Run_Left (5).png", "./Images/EnemyGoblin/Run_Left (6).png", "./Images/EnemyGoblin/Run_Left (7).png", "./Images/EnemyGoblin/Run_Left (8).png");
+            "./Images/EnemyGoblin/Run_Left (5).png", "./Images/EnemyGoblin/Run_Left (6).png", "./Images/EnemyGoblin/Run_Left (7).png", "./Images/EnemyGoblin/Run_Left (8).png");
 
         Attack1AnimLeftGob = loadAnimation("./Images/EnemyGoblin/Attack1_Left (1).png", "./Images/EnemyGoblin/Attack1_Left (2).png", "./Images/EnemyGoblin/Attack1_Left (3).png", "./Images/EnemyGoblin/Attack1_Left (4).png",
-          "./Images/EnemyGoblin/Attack1_Left (5).png", "./Images/EnemyGoblin/Attack1_Left (6).png", "./Images/EnemyGoblin/Attack1_Left (7).png", "./Images/EnemyGoblin/Attack1_Left (8).png");
+            "./Images/EnemyGoblin/Attack1_Left (5).png", "./Images/EnemyGoblin/Attack1_Left (6).png", "./Images/EnemyGoblin/Attack1_Left (7).png", "./Images/EnemyGoblin/Attack1_Left (8).png");
 
         Attack1AnimRightGob = loadAnimation("./Images/EnemyGoblin/Attack1_Right (1).png", "./Images/EnemyGoblin/Attack1_Right (2).png", "./Images/EnemyGoblin/Attack1_Right (3).png", "./Images/EnemyGoblin/Attack1_Right (4).png",
             "./Images/EnemyGoblin/Attack1_Right (5).png", "./Images/EnemyGoblin/Attack1_Right (6).png", "./Images/EnemyGoblin/Attack1_Right (7).png", "./Images/EnemyGoblin/Attack1_Right (8).png");
@@ -54,23 +54,65 @@ class EnemyMaker {
         //Preloaded Animations for Goblin
     }
 
-    
+
 
     setup() {
         this.sprite = this.makeGoblin(this.x, this.y, this.w, this.h);
     }
 
-    draw(){
-        this.sprite.changeAnimation("IdleLeft");
-        
+    draw() {
+
+
+
+
+        this.goblinControls();
+
     }
 
-    makeGoblin(x,y,w,h) {
+    goblinControls() {
+
+        if (keyIsDown(KEYS.Left)) {
+            this.sprite.changeAnimation("RunLeft");
+        }
+
+        if (keyIsDown(KEYS.Right)) {
+            this.sprite.changeAnimation("RunRight");
+        }
+
+        if (keyIsDown(KEYS.X)) {
+            this.sprite.changeAnimation("Attack1Right");
+        }
+
+        if (keyIsDown(KEYS.Z)) {
+            this.sprite.changeAnimation("Attack1Left");
+        }
+
+        if (keyIsDown(KEYS.D)) {
+            this.sprite.changeAnimation("TakeHitRight");
+        }
+
+        if (keyIsDown(KEYS.A)) {
+            this.sprite.changeAnimation("Attack1Left");
+        }
+
+        if(keyIsDown(KEYS.W)){
+            
+            this.sprite.changeAnimation("DeathRight");
+        }
+
+        if(keyIsDown(KEYS.S)){
+            this.sprite.changeAnimation("DeathLeft");
+        }
+
+
+    }
+
+    makeGoblin(x, y, w, h) {
         let tempGoblin = createSprite(x, y, w, h);
 
         tempGoblin.addAnimation("IdleLeft", IdleAnimLeftGob);
         tempGoblin.addAnimation("IdleRight", IdleAnimRightGob);
-       
+
         tempGoblin.addAnimation("RunRight", RunningAnimRightGob);
         tempGoblin.addAnimation("RunLeft", RunningAnimLeftGob);
         tempGoblin.addAnimation("Attack1Left", Attack1AnimLeftGob);
@@ -79,7 +121,7 @@ class EnemyMaker {
         // tempGoblin.addAnimation("Attack2Right", Attack2AnimRight);
         tempGoblin.addAnimation("DeathRight", DeathAnimRightGob);
         tempGoblin.addAnimation("DeathLeft", DeathAnimLeftGob);
-       
+
 
 
         return tempGoblin;
