@@ -34,13 +34,13 @@ class PlayerMaker {
       "./Images/MainWizard/Idle_Left (3).png", "./Images/MainWizard/Idle_Left (4).png", "./Images/MainWizard/Idle_Left (5).png", "./Images/MainWizard/Idle_Left (6).png",);
 
     IdleAnimRight = loadAnimation("./Images/MainWizard/Idle_Right (1).png", "./Images/MainWizard/Idle_Right (2).png",
-      "./Images/MainWizard/Idle_Right (3).png", "/Images/MainWizard/Idle_Right (4).png", "./Images/MainWizard/Idle_Right (5).png", "./Images/MainWizard/Idle_Right (6).png",);
+      "./Images/MainWizard/Idle_Right (3).png", "./Images/MainWizard/Idle_Right4.png", "./Images/MainWizard/Idle_Right (5).png", "./Images/MainWizard/Idle_Right (6).png",);
 
     RunningAnimRight = loadAnimation("./Images/MainWizard/Run_Right (1).png", "./Images/MainWizard/Run_Right (2).png", "./Images/MainWizard/Run_Right (3).png", "./Images/MainWizard/Run_Right (4).png",
       "./Images/MainWizard/Run_Right (5).png", "./Images/MainWizard/Run_Right (6).png", "./Images/MainWizard/Run_Right (7).png", "./Images/MainWizard/Run_Right (8).png");
 
     RunningAnimLeft = loadAnimation("./Images/MainWizard/Run_Left (1).png", "./Images/MainWizard/Run_Left (2).png", "./Images/MainWizard/Run_Left (3).png", "./Images/MainWizard/Run_Left (4).png",
-      "./Images/MainWizard/Run_Left (5).png", "/Images/MainWizard/Run_Left (6).png", "./Images/MainWizard/Run_Left (7).png", "./Images/MainWizard/Run_Left (8).png");
+      "./Images/MainWizard/Run_Left (5).png", "./Images/MainWizard/Run_Left6.png", "./Images/MainWizard/Run_Left (7).png", "./Images/MainWizard/Run_Left (8).png");
 
     Attack1AnimLeft = loadAnimation("./Images/MainWizard/Attack1_Left (1).png", "./Images/MainWizard/Attack1_Left (2).png", "./Images/MainWizard/Attack1_Left (3).png", "./Images/MainWizard/Attack1_Left (4).png",
       "./Images/MainWizard/Attack1_Left (5).png", "./Images/MainWizard/Attack1_Left (6).png", "./Images/MainWizard/Attack1_Left (7).png", "./Images/MainWizard/Attack1_Left (8).png");
@@ -55,7 +55,7 @@ class PlayerMaker {
       "./Images/MainWizard/Attack2_Right (5).png", "./Images/MainWizard/Attack2_Right (6).png", "./Images/MainWizard/Attack2_Right (7).png", "./Images/MainWizard/Attack2_Right (8).png");
 
     DeathAnimRight = loadAnimation("./Images/MainWizard/Death_Right (1).png", "./Images/MainWizard/Death_Right (2).png", "./Images/MainWizard/Death_Right (3).png", "./Images/MainWizard/Death_Right (4).png",
-      "./Images/MainWizard/Death_Right (5).png", "./Images/MainWizard/Death_Right (6).png", "./Images/MainWizard/Death_Right (7).png")
+      "./Images/MainWizard/Death_Right (5).png", "./Images/MainWizard/Death_Right (6).png", "./Images/MainWizard/Death_Right (7).png");
 
     //Preloaded Animations for Wizard
   }
